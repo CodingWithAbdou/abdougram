@@ -9,6 +9,13 @@ class Post extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'description',
+        'image',
+        'slug',
+    ];
+
     public function  owner()
     {
         return $this->hasMany(User::class , 'user_id');
