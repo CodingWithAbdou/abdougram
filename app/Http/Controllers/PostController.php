@@ -35,10 +35,10 @@ class PostController extends Controller
             'image' => ['required', 'mimes:jpeg,jpg,png,gif']
         ]);
 
-        $image = $request['image']->store('post' , 'public');
+        $image = $request['image']->store('posts' , 'public');
 
         $data['image'] = $image;
-        $data['slug'] = Str::random(10);
+        $data['slug'] = Str::random(15);
         auth()->user()->posts()->create($data);
 
         return redirect()->back();
@@ -51,7 +51,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('post.show' , compact('post'));
     }
 
     /**
