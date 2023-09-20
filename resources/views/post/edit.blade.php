@@ -17,11 +17,11 @@
         </div>
 
         {{-- Form --}}
-        <form action="/p/create" method="post" class="w-full" enctype="multipart/form-data">
-
-            <x-form-post></x-form-post>
+        <form action="/p/{{$post->slug}}/update" method="post" class="w-full" enctype="multipart/form-data">
+            @method('PUT')
+            <x-form-post :post=$post></x-form-post>
             <div class="text-right">
-                <x-primary-button class="mt-4">{{__('Create Post')}}</x-primary-button>
+                <x-primary-button class="mt-4">{{__('Update Post')}}</x-primary-button>
             </div>
         </form>
     </div>
