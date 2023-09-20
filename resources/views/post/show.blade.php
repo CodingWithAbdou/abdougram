@@ -16,12 +16,9 @@
                 </div>
                 @if ($post->owner->id === auth()->user()->id)
                 <div class="flex gap-1 items-center">
-                    <form action="/p/{{$post->slug}}/edit" method="POST">
-                        @csrf
-                        <button>
-                            <i class='bx bx-message-square-edit text-xl text-green-400'></i>
-                        </button>
-                    </form>
+                    <a href="/p/{{$post->slug}}/edit">
+                        <i class='bx bx-message-square-edit text-xl text-green-400'></i>
+                    </a>
                     <form action="/p/{{$post->slug}}/delete" method="POST">
                         @csrf
                         @method('DELETE')

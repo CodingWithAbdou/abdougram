@@ -17,7 +17,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $array = ['one.png' , 'two.png' , 'tree.png' , 'four.png'];
+        $array = ['one.jpg' , 'two.jpg' , 'three.jpg' , 'four.jpg'];
         return [
             'description' => fake()->sentence(),
             'slug' => fake()->regexify('[A-Za-z0-9]{15}'),

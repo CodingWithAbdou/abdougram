@@ -13,9 +13,11 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Post $post)
     {
-        //
+
+        $posts = Post::all();
+        return view('post.index' , compact('posts'));
     }
 
     /**
@@ -95,7 +97,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect('/home');
+        return redirect(route('home_page'));
 
     }
 }
