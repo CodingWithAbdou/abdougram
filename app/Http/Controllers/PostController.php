@@ -17,7 +17,8 @@ class PostController extends Controller
     {
 
         $posts = Post::all();
-        return view('post.index' , compact('posts'));
+        $suggested_users = auth()->user()->suggested_users();
+        return view('post.index' , compact(['posts' , 'suggested_users']));
     }
 
     /**
@@ -70,10 +71,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // $data = request()->validate([
-        //     'description' => 'required',
-        //     'image' => ['required', 'mimes:jpeg,jpg,png,gif']
-        // ]);
         $data = request()->validate([
             'description' => 'required',
             'image' => ['nullable' , 'mimes:jpeg,jpg,png,gif' ],
@@ -98,6 +95,11 @@ class PostController extends Controller
         $post->delete();
 
         return redirect(route('home_page'));
+    }
 
+    public function explore(Post $post)
+    {
+        $posts = Post::all();
+        return view('post.explore' , compact('posts'));
     }
 }

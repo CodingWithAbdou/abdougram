@@ -22,7 +22,7 @@
                     <form action="/p/{{$post->slug}}/delete" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button onclick="return confirm('{{__('Are You Sure')}}')">
+                        <button onclick="return confirm('{{__('Are You Sure Delete This Post')}}')">
                             <i class='bx bx bx-message-square-x text-xl text-red-600'></i>
                         </button>
                     </form>

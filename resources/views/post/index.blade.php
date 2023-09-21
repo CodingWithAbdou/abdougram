@@ -36,14 +36,14 @@
                 </a>
             </div>
             {{-- change Posts to suggested users --}}
-            @foreach ($posts as $post)
+            @foreach ($suggested_users as $s_user)
             <div class="flex items-center gap-2 my-4">
-                <a href="/profile/{{$post->owner->id}}">
-                    <img class="rounded-full w-10 h-10" src="{{$post->owner->image}}" >
+                <a href="/profile/{{$s_user->id}}">
+                    <img class="rounded-full w-10 h-10" src="{{$s_user->image}}" >
                 </a>
                 <div>
-                    <a href="/profile/{{$post->owner->id}}">
-                        <h3>{{ $post->owner->username }}</h3>
+                    <a href="/profile/{{$s_user->id}}">
+                        <h3>{{ $s_user->username }}</h3>
                     </a>
                     <p class="text-sm text-gray-400">{{ __('Suggested for you')}}</p>
                 </div>

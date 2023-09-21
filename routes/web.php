@@ -38,9 +38,11 @@ Route::controller(PostController::class)->middleware('auth')->group(function () 
     Route::get('/p/create' , 'create')->name('create_post');
     Route::post('/p/create' , 'store')->name('store_post');
     Route::get('/p/{post:slug}' ,'show')->name('show_post');
-    Route::post('/p/{post:slug}/edit' , 'edit')->name('edit_post');
+    Route::get('/p/{post:slug}/edit' , 'edit')->name('edit_post');
     Route::put('/p/{post:slug}/update' , 'update')->name('update_post');
     Route::delete('/p/{post:slug}/delete' , 'destroy')->name('delete_post');
+
+    Route::get('/explore' , 'explore')->name('explore_posts');
 });
 
 Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->name('store_comment')->middleware('auth');

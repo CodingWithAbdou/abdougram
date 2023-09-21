@@ -13,8 +13,8 @@
     <div class="card-body">
 
         <div class="bg-black overflow-hidden min-h-[25rem] flex items-center"  >
-            <a href="/p/{{$post->slug}}">
-                <img class="max-h-full" src="/storage/{{ $post->image }}">
+            <a class="w-full" href="/p/{{$post->slug}}">
+                <img class="max-h-full w-full" src="/storage/{{ $post->image }}">
             </a>
         </div>
 
@@ -28,6 +28,7 @@
                 <i class='bx bx-save' ></i>
             </div>
         </div>
+
         <div class="px-5  text-sm">
             likes ...
         </div>
