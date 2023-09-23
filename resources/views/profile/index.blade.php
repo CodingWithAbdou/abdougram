@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="grid grid-cols-12 ">
         <div class="order-0 col-span-4 row-span-3 flex items-center justify-center">
-            <img class="md:w-32 md:h-32 w-20 h-20 rounded-full" src="{{$user->image}}">
+            <img class="md:w-32 md:h-32 w-20 h-20 rounded-full object-cover max-w-full" src="{{$user->image}}">
         </div>
 
         <div class="order-1 col-span-8 md:row-span-1 row-span-3 flex items-center flex-wrap gap-6">
@@ -24,6 +24,7 @@
             <h3>
                 {{$user->name}}
             </h3>
+
             <p>
                 {!! nl2br(e($user->bio)) !!}
             </p>

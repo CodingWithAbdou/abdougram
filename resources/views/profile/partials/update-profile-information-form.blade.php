@@ -1,6 +1,6 @@
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+<section class="flex gap-4">
+    <header class=" border-b py-2 mb-10 mt-6">
+        <h2 class="text-xl font-medium text-gray-900">
             {{ __('Profile Information') }}
         </h2>
 
@@ -14,24 +14,51 @@
     </form>
 
 
-    <div>
-        <div class="flex items-center gap-2 pt-4">
-            <img class="rounded-full w-9 h-9" src="{{auth()->user()->image}}">
-            <input class="w-full border border-gray-200 bg-gray-50 block focus:outline-none rounded-xl"
-            name="image" id="file_input" type="file">
-        </div>
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or GIF.</p>
-    </div>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6 w-9/12" enctype="multipart/form-data">
         @csrf
         @method('patch')
+        {{-- update Image --}}
+        <div class="my-4">
+            <x-input-label for="file_input" :value="__('Image ')" />
+            <div class="flex items-center gap-2 pt-4">
+                <img class="rounded-full w-9 h-9" src="{{auth()->user()->image}}">
+                <input class="w-full border border-gray-200 bg-gray-50 block focus:outline-none rounded-lg"
+                name="image" id="file_input" type="file">
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-300 " id="file_input_help">PNG, JPG or GIF.</p>
+            <x-input-error :messages="$errors->get('file_input')" class="mt-2" />
+        </div>
+        {{-- Update Bio --}}
+        <div class="my-4">
+            <x-input-label for="bio" :value="__('Bio')" />
+            <textarea name="bio" rows="5" class="mt-2 align-start w-full border border-gray-200 rounded-lg"
+                placeholder="{{__('Add Bio...')}}" id="image">
+                    {{ $user->bio ?? "" }}
+            </textarea>
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
+        {{-- Update private acoount or not --}}
+        <div class="my-4">
+            <div class="flex h-6 items-center gap-3">
+                <input id="private_account" name="private_account" type="checkbox" {{auth()->user()->private_account ? 'checked' : '' }} class="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-600">
+                <x-input-label for="private_account" :value="__('private account')" />
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username' , $user->username)" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -57,7 +84,7 @@
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center  flex-row-reverse gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
