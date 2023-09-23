@@ -1,10 +1,10 @@
 <div class="card">
     {{-- card  head --}}
     <div class="card-header gap-2">
-        <a href="/profile/{{$post->owner->id}}">
+        <a href="/profile/{{$post->owner->username}}">
             <img class="w-9 h-9 rounded-full border-gray-400" src="{{$post->owner->image}}" >
         </a>
-        <a href="/profile/{{$post->owner->id}}">
+        <a href="/profile/{{$post->owner->username}}">
             {{$post->owner->username}}
         </a>
     </div>

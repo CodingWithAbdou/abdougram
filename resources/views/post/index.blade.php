@@ -17,11 +17,11 @@
         {{-- Right section --}}
         <div class="w-4/12 pt-4">
             <div class="flex items-center gap-2">
-                <a href="/profile/{{$post->owner->id}}">
-                    <img class="rounded-full w-10 h-10" src="{{$post->owner->image}}" >
+                <a href="/profile/{{auth()->user()->username}}">
+                    <img class="rounded-full w-12 h-12" src="{{auth()->user()->image}}"  alt="{{auth()->user()->name}}">
                 </a>
                 <div>
-                    <a href="/profile/{{$post->owner->id}}">
+                    <a href="/profile/{{auth()->user()->username}}">
                         <h3>{{ $post->owner->username }}</h3>
                     </a>
                     <p class="text-sm text-gray-600">{{ $post->owner->name }}</p>
@@ -38,11 +38,11 @@
             {{-- change Posts to suggested users --}}
             @foreach ($suggested_users as $s_user)
             <div class="flex items-center gap-2 my-4">
-                <a href="/profile/{{$s_user->id}}">
+                <a href="/profile/{{$s_user->username}}">
                     <img class="rounded-full w-10 h-10" src="{{$s_user->image}}" >
                 </a>
                 <div>
-                    <a href="/profile/{{$s_user->id}}">
+                    <a href="/profile/{{$s_user->username}}">
                         <h3>{{ $s_user->username }}</h3>
                     </a>
                     <p class="text-sm text-gray-400">{{ __('Suggested for you')}}</p>

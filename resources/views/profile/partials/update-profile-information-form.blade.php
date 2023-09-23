@@ -13,6 +13,16 @@
         @csrf
     </form>
 
+
+    <div>
+        <div class="flex items-center gap-2 pt-4">
+            <img class="rounded-full w-9 h-9" src="{{auth()->user()->image}}">
+            <input class="w-full border border-gray-200 bg-gray-50 block focus:outline-none rounded-xl"
+            name="image" id="file_input" type="file">
+        </div>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG or GIF.</p>
+    </div>
+
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')

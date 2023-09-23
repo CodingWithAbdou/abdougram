@@ -10,9 +10,11 @@
 
             {{-- Head --}}
             <div class="border-b-2 flex items-center gap-2 p-5">
-                <img class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full"  src="{{ $post->owner->image }}" alt="{{ $post->owner->username }}">
+                <a href="/profile/{{ $post->owner->username }}">
+                    <img class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full"  src="{{ $post->owner->image }}" alt="{{ $post->owner->username }}">
+                </a>
                 <div class="grow">
-                    <a class="font-bold" href="/{{ $post->owner->username }}" >{{ $post->owner->username }}</a>
+                    <a class="font-bold" href="/profile/{{ $post->owner->username }}" >{{ $post->owner->username }}</a>
                 </div>
                 @if ($post->owner->id === auth()->user()->id)
                 <div class="flex gap-1 items-center">
@@ -30,12 +32,14 @@
                 @endif
             </div>
 
-            {{-- discription And Tags  --}}
+            {{-- discription The Post And Tags  --}}
             <div class="flex flex-col grow overflow-y-auto">
                 <div class="flex items-center p-5 gap-2">
-                    <img src="{{ $post->owner->image }}" class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full">
+                    <a href="/profile/{{$post->owner->username}}">
+                        <img src="{{ $post->owner->image }}" class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full">
+                    </a>
                     <div>
-                        <a href="{{ $post->owner->username }}" class="font-bold">{{ $post->owner->username }}</a>
+                        <a href="/profile/{{ $post->owner->username }}" class="font-bold">{{ $post->owner->username }}</a>
                         {{ $post->description }}
                     </div>
                 </div>
@@ -44,10 +48,12 @@
                 <div class="grow">
                     @foreach ($post->comments as $comment)
                         <div class="flex items-center px-5 py-2 gap-2 " >
-                            <img src="{{ $comment->owner->image }}" alt="" class="h-100 ltr:mr-5 rtl:ml-5 w-10 rounded-full">
+                            <a href="/profile/{{$comment->owner->username}}">
+                                <img src="{{ $comment->owner->image }}" alt="" class="h-100 ltr:mr-5 rtl:ml-5 w-10 rounded-full">
+                            </a>
                             <div class="flex flex-col">
                                 <div>
-                                    <a href="/{{ $comment->owner->username }}" class="font-bold">{{ $comment->owner->username }}</a>
+                                    <a href="/profile/{{$comment->owner->username}}" class="font-bold">{{ $comment->owner->username }}</a>
                                     {{ $comment->body }}
                                 </div>
                                 <div class="mt-1 text-sm font-bold text-gray-400">

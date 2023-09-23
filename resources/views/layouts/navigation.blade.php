@@ -11,61 +11,44 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home_page')" :active="request()->routeIs('home_page')">
-                        {{ __('Dashbord') }}
+                        {{ __('Home') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="flex gap-3 items-center mx-2">
                     <div>
-                        @if (Route::current()->getName() == 'home_page')
                         <a href="{{route('home_page')}}">
-                            <i class='bx bxs-home text-xl'></i>
+                            {!! url()->current() == route('home_page') ?  '<i class="bx bxs-home text-xl"></i>' :  '<i class="bx bx-home text-xl" ></i>' !!}
                         </a>
-                        @else
-                        <a href="{{route('home_page')}}">
-                            <i class='bx bx-home text-xl' ></i>
-                        </a>
-                        @endif
                     </div>
 
                     <div>
-                        @if (Route::current()->getName() == 'explore_posts')
                         <a href="{{route('explore_posts')}}">
-                            <i class='bx bxs-compass text-xl'></i>
+                            {!! url()->current() == route('explore_posts') ?  "<i class='bx bxs-compass text-xl'></i>" :  "<i class='bx bx-compass text-xl'></i>" !!}
                         </a>
-                        @else
-                        <a href="{{route('explore_posts')}}">
-                            <i class='bx bx-compass text-xl'></i>
-                        </a>
-                        @endif
                     </div>
 
                     <div>
-                        @if (Route::current()->getName() == 'create_post')
                         <a href="{{route('create_post')}}">
-                            <i class='bx bxs-message-square-add  text-xl' ></i>
+                            {!! url()->current() == route('create_post') ?  "<i class='bx bxs-message-square-add  text-xl' ></i>" :  "<i class='bx bx-message-square-add  text-xl'></i>" !!}
                         </a>
-                        @else
-                        <a href="{{route('create_post')}}">
-                            <i class='bx bx-message-square-add  text-xl'></i>
-                        </a>
-                        @endif
                     </div>
+
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div><img class="w-8 h-8 rounded-full" src="{{ Auth::user()->image }}" alt=""></div>
+                            <div><img class="w-8 h-8 rounded-full" src="{{ auth()->user()->image }}" alt=""></div>
                         </button>
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('my_profile' , auth()->user()->username)">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -111,7 +94,7 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('my_profile' , auth()->user()->username)">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
