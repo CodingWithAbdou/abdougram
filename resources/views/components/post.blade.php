@@ -20,7 +20,13 @@
 
         <div class="px-5 py-2 flex ">
             <div class="flex-grow">
-                <i class="bx bx-heart"></i>
+                <a href="/p/{{$post->slug}}/like">
+                    @if($post->liked(auth()->user()))
+                    <i class='bx bxs-heart text-2xl text-red-600 hover:text-gray-400 transition'></i>
+                    @else
+                    <i class="bx bx-heart text-2xl hover:text-gray-300 transition"></i>
+                    @endif
+                </a>
                 <i class="bx bx-message-square-dots"></i>
                 <i class='bx bx-share-alt'></i>
             </div>

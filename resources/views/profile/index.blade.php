@@ -1,4 +1,8 @@
 <x-app-layout>
+    <div id="alert" class="{{ session('success') ? '' : 'hidden' }} absolute top-16 right-2  mx-8 bg-green-400 border rounded-lg shadow-sm text-white font-bold p-4 ">
+        <span>{{ session('success')}}</span>
+    </div>
+
     <div class="grid grid-cols-12 ">
         <div class="order-0 col-span-4 row-span-3 flex items-center justify-center">
             <img class="md:w-32 md:h-32 w-20 h-20 rounded-full object-cover max-w-full" src="{{$user->image}}">
@@ -25,7 +29,7 @@
                 {{$user->name}}
             </h3>
 
-            <p>
+            <p class="font-bold">
                 {!! nl2br(e($user->bio)) !!}
             </p>
         </div>
@@ -56,3 +60,21 @@
         </div>
     </div>
 </x-app-layout>
+<style>
+    #alert.hide {
+        transition: all .5s;
+        display: none;
+    }
+</style>
+
+<script>
+
+window.addEventListener('load' , hidNotify)
+    function hidNotify() {
+        setTimeout(() => {
+            if(document.querySelector('#alert')) {
+                document.querySelector('#alert').classList.add('hide')
+            }
+        }, 3000);
+    }
+</script>

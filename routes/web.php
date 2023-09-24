@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,9 @@ Route::controller(PostController::class)->middleware('auth')->group(function () 
 
     Route::get('/explore' , 'explore')->name('explore_posts');
 });
+
+
+Route::get('/p/{post:slug}/like' , LikeController::class);
 
 Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->name('store_comment')->middleware('auth');
 
