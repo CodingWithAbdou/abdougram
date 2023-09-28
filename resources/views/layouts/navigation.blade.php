@@ -43,7 +43,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div><img class="w-8 h-8 rounded-full" src="{{ auth()->user()->image }}" alt=""></div>
+                            <div><img class="w-8 h-8 rounded-full  object-cover" src="{{ auth()->user()->image }}" alt=""></div>
                         </button>
                     </x-slot>
 

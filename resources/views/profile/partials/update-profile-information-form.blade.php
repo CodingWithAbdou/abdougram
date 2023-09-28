@@ -23,7 +23,7 @@
         <div class="my-4">
             <x-input-label for="file_input" :value="__('Image ')" />
             <div class="flex items-center gap-2 pt-4">
-                <img class="rounded-full w-9 h-9" src="{{auth()->user()->image}}">
+                <img class="rounded-full w-9 h-9  object-cover" src="{{auth()->user()->image}}">
                 <input class="w-full border border-gray-200 bg-gray-50 block focus:outline-none rounded-lg"
                 name="image" id="file_input" type="file">
             </div>

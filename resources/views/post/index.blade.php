@@ -18,7 +18,7 @@
         <div class="w-4/12 pt-4">
             <div class="flex items-center gap-2">
                 <a href="/profile/{{auth()->user()->username}}">
-                    <img class="rounded-full w-12 h-12" src="{{auth()->user()->image}}"  alt="{{auth()->user()->name}}">
+                    <img class="rounded-full w-12 h-12  object-cover" src="{{auth()->user()->image}}"  alt="{{auth()->user()->name}}">
                 </a>
                 <div>
                     <a href="/profile/{{auth()->user()->username}}">

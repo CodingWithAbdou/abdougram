@@ -11,7 +11,7 @@
             {{-- Head --}}
             <div class="border-b-2 flex items-center gap-2 p-5">
                 <a href="/profile/{{ $post->owner->username }}">
-                    <img class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full"  src="{{ $post->owner->image }}" alt="{{ $post->owner->username }}">
+                    <img class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full  object-cover"  src="{{ $post->owner->image }}" alt="{{ $post->owner->username }}">
                 </a>
                 <div class="grow">
                     <a class="font-bold" href="/profile/{{ $post->owner->username }}" >{{ $post->owner->username }}</a>
@@ -36,7 +36,7 @@
             <div class="flex flex-col grow overflow-y-auto">
                 <div class="flex items-center p-5 gap-2">
                     <a href="/profile/{{$post->owner->username}}">
-                        <img src="{{ $post->owner->image }}" class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full">
+                        <img src="{{ $post->owner->image }}" class="ltr:mr-5 rtl:ml-5 h-10 w-10 rounded-full  object-cover">
                     </a>
                     <div>
                         <a href="/profile/{{ $post->owner->username }}" class="font-bold">{{ $post->owner->username }}</a>
@@ -49,7 +49,7 @@
                     @foreach ($post->comments as $comment)
                         <div class="flex items-center px-5 py-2 gap-2 " >
                             <a href="/profile/{{$comment->owner->username}}">
-                                <img src="{{ $comment->owner->image }}" alt="" class="h-100 ltr:mr-5 rtl:ml-5 w-10 rounded-full">
+                                <img src="{{ $comment->owner->image }}" alt="" class="h-100 ltr:mr-5   object-cover rtl:ml-5 w-10 rounded-full">
                             </a>
                             <div class="flex flex-col">
                                 <div>
