@@ -56,4 +56,8 @@
             </x-primary-button>
         </div>
     </form>
+
+    <div>
+        <a href="{{route('login') }}">{{ __('Login') }}</a>
+    </div>
 </x-guest-layout>

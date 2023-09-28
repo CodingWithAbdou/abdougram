@@ -16,9 +16,16 @@ class PostController extends Controller
     public function index(Post $post)
     {
 
-        $posts = Post::all();
-        $suggested_users = auth()->user()->suggested_users();
-        return view('post.index' , compact(['posts' , 'suggested_users']));
+        // $posts = Post::all();
+        $followings = auth()->user()->following()->get();
+        $post = [];
+        foreach ($followings as $following) :
+
+            dd($following);
+        endforeach;
+
+        // $suggested_users = auth()->user()->suggested_users();
+        // return view('post.index' , compact(['posts' , 'suggested_users']));
     }
 
     /**
