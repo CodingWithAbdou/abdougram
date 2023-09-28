@@ -7,8 +7,8 @@
                 @forelse ($posts as $post)
                     <x-post :post="$post"></x-post>
                 @empty
-                    <div class="bg-orange-400 p-2 border-orange-800 rounded-md ">
-                        {{ __('There Are No Post To Show') }}
+                    <div class="bg-yellow-400 p-2 border border-yellow-400 px-4 rounded-md text-white ">
+                        {{ __('Start Follwing You Friends and Enjoy') }}
                     </div>
                 @endforelse
             </div>
@@ -22,9 +22,9 @@
                 </a>
                 <div>
                     <a href="/profile/{{auth()->user()->username}}">
-                        <h3>{{ $post->owner->username }}</h3>
+                        <h3>{{ auth()->user()->username }}</h3>
                     </a>
-                    <p class="text-sm text-gray-600">{{ $post->owner->name }}</p>
+                    <p class="text-sm text-gray-600">{{ auth()->user()->name }}</p>
                 </div>
             </div>
             {{-- here will add link show all users --}}
@@ -37,15 +37,20 @@
             </div>
             {{-- change Posts to suggested users --}}
             @foreach ($suggested_users as $s_user)
-            <div class="flex items-center gap-2 my-4">
-                <a href="/profile/{{$s_user->username}}">
-                    <img class="rounded-full w-10 h-10" src="{{$s_user->image}}" >
-                </a>
-                <div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 my-4">
                     <a href="/profile/{{$s_user->username}}">
-                        <h3>{{ $s_user->username }}</h3>
+                        <img class="rounded-full w-10 h-10" src="{{$s_user->image}}" >
                     </a>
-                    <p class="text-sm text-gray-400">{{ __('Suggested for you')}}</p>
+                    <div>
+                        <a href="/profile/{{$s_user->username}}">
+                            <h3>{{ $s_user->username }}</h3>
+                        </a>
+                        <p class="text-sm text-gray-400">{{ __('Suggested for you')}}</p>
+                    </div>
+                </div>
+                <div>
+                    <a href="/{{$s_user->username}}/follow"  class="nice-btn cursor-default text-[10px] select-none ">{{__('Follow')}}</a>
                 </div>
             </div>
             @endforeach
@@ -53,4 +58,5 @@
 
     </div>
 </x-app-layout>
+
 

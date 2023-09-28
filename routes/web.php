@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -51,5 +52,11 @@ Route::controller(PostController::class)->middleware('auth')->group(function () 
 
 Route::get('/p/{post:slug}/like' , LikeController::class);
 
+
 Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->name('store_comment')->middleware('auth');
+
+
+Route::get('/{user:username}/follow' , [ FollowController::class , 'follow' ])->name('add_follow')->middleware('auth');
+
+
 

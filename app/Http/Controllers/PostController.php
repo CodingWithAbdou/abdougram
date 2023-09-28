@@ -17,15 +17,11 @@ class PostController extends Controller
     {
 
         // $posts = Post::all();
-        $followings = auth()->user()->following()->get();
-        $post = [];
-        foreach ($followings as $following) :
+        $followingsIds = auth()->user()->following()->wherePivot('confirmed' , true)->get()->pluck('id');
 
-            dd($following);
-        endforeach;
-
-        // $suggested_users = auth()->user()->suggested_users();
-        // return view('post.index' , compact(['posts' , 'suggested_users']));
+        $posts = Post::whereIn('user_id' , $followingsIds )->latest()->get()->shuffle();
+        $suggested_users = auth()->user()->suggested_users();
+        return view('post.index' , compact(['posts' , 'suggested_users']));
     }
 
     /**
