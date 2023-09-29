@@ -57,6 +57,7 @@ Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->na
 
 
 Route::get('/{user:username}/follow' , [ FollowController::class , 'follow' ])->name('add_follow')->middleware('auth');
+Route::get('/{user:username}/unfollow' , [ FollowController::class , 'unfollow' ])->name('add_follow')->middleware('auth');
 
 
 

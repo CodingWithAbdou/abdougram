@@ -43,14 +43,23 @@
                         <img class="rounded-full w-10 h-10" src="{{$s_user->image}}" >
                     </a>
                     <div>
-                        <a href="/profile/{{$s_user->username}}">
-                            <h3>{{ $s_user->username }}</h3>
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <a  href="/profile/{{$s_user->username}}">
+                                <h3 class="my-0">{{ $s_user->username }}</h3>
+                            </a>
+                            @if (auth()->user()->isFollower($s_user))
+                            <span class="text-gray-400 text-sm font-bold">{{ __('Follower') }}</span>
+                            @endif
+                        </div>
                         <p class="text-sm text-gray-400">{{ __('Suggested for you')}}</p>
                     </div>
                 </div>
                 <div>
-                    <a href="/{{$s_user->username}}/follow"  class="nice-btn cursor-default text-[10px] select-none ">{{__('Follow')}}</a>
+                    @if (auth()->user()->isPending($s_user))
+                    <span class="text-gray-500 text-md font-bold">Pending</span>
+                    @else
+                    <a href="/{{$s_user->username}}/follow"  class=" cursor-pointer text-md select-none text-blue-400 hover:text-blue-500 font-bold  ">{{__('Follow')}}</a>
+                    @endif
                 </div>
             </div>
             @endforeach

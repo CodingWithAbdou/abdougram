@@ -12,4 +12,10 @@ class FollowController extends Controller
         auth()->user()->follow($user);
         return back();
     }
+
+    public function unfollow(User $user)
+    {
+        auth()->user()->unfollow($user);
+        return back();
+    }
 }

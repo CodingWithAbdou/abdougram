@@ -70,12 +70,12 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class , "follows"  , "user_id" , "following_user_id")->withTimestamps()->withPivot('confirmed');
+        return $this->belongsToMany(User::class , "follows"  , "following_user_id" , "user_id")->withTimestamps()->withPivot('confirmed');
     }
 
     public function following()
     {
-        return $this->belongsToMany(User::class , "follows"  , "following_user_id" , "user_id" )->withTimestamps()->withPivot('confirmed');
+        return $this->belongsToMany(User::class , "follows"  , "user_id" , "following_user_id" )->withTimestamps()->withPivot('confirmed');
     }
 
     public function follow(User $user)
@@ -91,13 +91,18 @@ class User extends Authenticatable
         return $this->following()->detach($user);
     }
 
-    public function isFollow()
+    public function isPending(User $user)
     {
-
+        return $this->following()->where('following_user_id' , $user->id)->where('confirmed' , false)->exists();
     }
 
-    public function isNotFollow()
+    public function isFollower(User $user)
     {
+        return $this->followers()->where('user_id' , $user->id)->where('confirmed' , false)->exists();
+    }
 
+    public function isFollowing(User $user)
+    {
+        return $this->following()->where('following_user_id' , $user->id)->where('confirmed' , true)->exists();
     }
 }

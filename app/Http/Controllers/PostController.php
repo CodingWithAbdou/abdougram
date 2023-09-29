@@ -15,8 +15,6 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-
-        // $posts = Post::all();
         $followingsIds = auth()->user()->following()->wherePivot('confirmed' , true)->get()->pluck('id');
 
         $posts = Post::whereIn('user_id' , $followingsIds )->latest()->get()->shuffle();

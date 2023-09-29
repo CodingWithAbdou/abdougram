@@ -12,16 +12,26 @@
             <h2 class="text-2xl  ">
                     {{$user->username}}
             </h2>
-            @if ( auth()->user()->id == $user->id)
             <div class="flex items-center">
+                @if (auth()->user()->id == $user->id)
                 <a class="mx-2 nice-btn" href="/profile">
                     {{ __("Edit profile")}}
                 </a>
                 <a href="/profile">
                     {!! auth()->user()->id == $user->id ? "<i class='bx bx-cog text-xl'></i>" : "" !!}
                 </a>
+                @elseif(auth()->user()->isFollowing($user))
+                <a class="mx-2 nice-btn" href="/{{$user->username}}/unfollow">
+                    {{ __("UnFollow")}}
+                </a>
+                @elseif(auth()->user()->isPending($user))
+                    <span class="text-white bg-gray-400 py-1 px-2 rounded-md">{{ __("Pending")}}</span>
+                @else
+                <a class="mx-2 nice-btn" href="/{{$user->username}}/follow">
+                    {{ __("Follow")}}
+                </a>
+                @endif
             </div>
-            @endif
         </div>
 
         <div class="md:order-3  order-2  col-span-8 py-2">
@@ -37,27 +47,29 @@
         <div class="md:order-2 order-3 md:col-span-8 col-span-12">
             <ul class="flex justify-center md:justify-start md:border-none border-y py-4 gap-6" >
                 <li class="text-lg">{{ count($user->posts)  }}{{ count($user->posts) > 0 ? ' Posts' : 'post' }}</li>
-                <li class="text-lg"> 0 Follwers</li>
-                <li class="text-lg"> 0 Following</li>
+                <li class="text-lg"> {{$user->followers()->count()}} {{ __('Follwers')}}</li>
+                <li class="text-lg"> {{count($user->following)}} {{ __('Following') }}</li>
             </ul>
         </div>
     </div>
     <div>
-        {{-- @if ($user->id == auth()->user()->id)
-            @if(count($user->posts) > 0  )
-
-            @else
-        @endif --}}
-
+        @if ($user->id == auth()->user()->id || auth()->user()->isFollowing($user) || $user->private_account == false )
         <div  class="flex justify-center py-8">
             <div class="w-[78%] grid  grid-cols-3  ">
                 @foreach ($user->posts as $post)
                 <a class="card min-h-[16rem] max-h-[16rem] h-[16rem] bg-black overflow-hidden m-0 w-[16rem] rounded-none" href="/p/{{$post->slug}}">
                     <img class="h-screen object-cover " src="/storage/{{$post->image}}" >
                 </a>
-            @endforeach
+                @endforeach
             </div>
         </div>
+        @elseif (auth()->user()->isPending($user))
+        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('After Owner This Page Accept Your Invite You Can See Posts')}}</div>
+        @else
+        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('This Acoount Is Private ,  Follow This account For See All Posts')}}</div>
+        @endif
+
+
     </div>
 </x-app-layout>
 <style>
