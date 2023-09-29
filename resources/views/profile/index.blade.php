@@ -14,20 +14,20 @@
             </h2>
             <div class="flex items-center">
                 @if (auth()->user()->id == $user->id)
-                <a class="mx-2 nice-btn" href="/profile">
+                <a class="mx-2 nice-btn " href="/profile">
                     {{ __("Edit profile")}}
                 </a>
                 <a href="/profile">
                     {!! auth()->user()->id == $user->id ? "<i class='bx bx-cog text-xl'></i>" : "" !!}
                 </a>
                 @elseif(auth()->user()->isFollowing($user))
-                <a class="mx-2 nice-btn" href="/{{$user->username}}/unfollow">
+                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/unfollow">
                     {{ __("UnFollow")}}
                 </a>
                 @elseif(auth()->user()->isPending($user))
                     <span class="text-white bg-gray-400 py-1 px-2 rounded-md">{{ __("Pending")}}</span>
                 @else
-                <a class="mx-2 nice-btn" href="/{{$user->username}}/follow">
+                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">
                     {{ __("Follow")}}
                 </a>
                 @endif
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div>
-        @if ($user->id == auth()->user()->id || auth()->user()->isFollowing($user) || $user->private_account == false )
+        @if (count($user->posts) > 0 && ($user->id == auth()->user()->id || auth()->user()->isFollowing($user) || $user->private_account == false) )
         <div  class="flex justify-center py-8">
             <div class="w-[78%] grid  grid-cols-3  ">
                 @foreach ($user->posts as $post)
@@ -63,6 +63,10 @@
                 @endforeach
             </div>
         </div>
+        @elseif (count($user->posts) ==  0  && $user->id == auth()->user()->id)
+        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('You Don\'t Have any Posts')}}</div>
+        @elseif (count($user->posts) ==  0)
+        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('This User Does\'t Have any Posts')}}</div>
         @elseif (auth()->user()->isPending($user))
         <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('After Owner This Page Accept Your Invite You Can See Posts')}}</div>
         @else

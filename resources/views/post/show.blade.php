@@ -30,13 +30,13 @@
                     </form>
                 </div>
                 @elseif(auth()->user()->isFollowing($post->owner))
-                <a class="mx-2 nice-btn" href="/{{$post->owner->username}}/unfollow">
+                <a class="mx-2 nice-btn bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/unfollow">
                     {{ __("UnFollow")}}
                 </a>
                 @elseif(auth()->user()->isPending($post->owner))
                     <span class="text-white bg-gray-400 py-1 px-2 rounded-md">{{ __("Pending")}}</span>
                 @else
-                <a class="mx-2 nice-btn" href="/{{$post->owner->username}}/follow">
+                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/follow">
                     {{ __("Follow")}}
                 </a>
                 @endif
