@@ -6,6 +6,13 @@ use Livewire\Component;
 
 class Like extends Component
 {
+    public $post;
+
+    public function toglle_like()
+    {
+        auth()->user()->likes()->toggle($this->post);
+    }
+
     public function render()
     {
         return view('livewire.like');

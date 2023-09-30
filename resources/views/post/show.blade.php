@@ -72,18 +72,23 @@
                             </div>
                         </div>
                     @endforeach
+
                 </div>
             </div>
 
-            <div class="border-b-2 ">
-                {{-- <p>section like comment</p> --}}
+            <div class="border-y px-5 py-2  ">
+                    <livewire:like :post="$post" />
+                    <i id="comment-icon" class="bx bx-message-square-dots bx cursor-pointer  text-2xl hover:text-gray-300 transition"></i>
+                    <div>
+                        likes
+                    </div>
             </div>
 
             <div class="border-t p-5">
                 <form action="/p/{{$post->slug}}/comment" method="POST">
                     @csrf
                     <div class="flex flex-row">
-                        <textarea class="h-5 grow resize-none overflow-hidden border-none bg-none p-0 placeholder-gray-400 outline-0 focus:ring-0" name="body" id="body-comment" placeholder="{{ __('Add a comment ..') }}"></textarea>
+                        <textarea id="comment-area" class="h-5 grow resize-none overflow-hidden border-none bg-none p-0 placeholder-gray-400 outline-0 focus:ring-0" name="body" id="body-comment" placeholder="{{ __('Add a comment ..') }}"></textarea>
                         <button class="ltr:ml-5 rtl:mr-5 border-none bg-white text-blue-500" type="submit">{{ __('Post') }}</button>
                     </div>
                 </form>
@@ -93,3 +98,10 @@
     </div>
 </x-app-layout>
 
+
+
+<script>
+    document.getElementById('comment-icon').addEventListener('click' , ()=> {
+        document.getElementById('comment-area').focus();
+    })
+</script>
