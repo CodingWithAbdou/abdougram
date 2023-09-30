@@ -79,9 +79,7 @@
             <div class="border-y px-5 py-2  ">
                     <livewire:like :post="$post" />
                     <i id="comment-icon" class="bx bx-message-square-dots bx cursor-pointer  text-2xl hover:text-gray-300 transition"></i>
-                    <div>
-                        likes
-                    </div>
+                    <livewire:who-likes :post="$post" />
             </div>
 
             <div class="border-t p-5">

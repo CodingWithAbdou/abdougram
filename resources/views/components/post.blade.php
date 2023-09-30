@@ -32,7 +32,8 @@
         </div>
 
         <div class="px-5  text-sm">
-            likes ...
+            <livewire:who-likes :post="$post" />
+
         </div>
 
         <div  class="px-5 py-2">

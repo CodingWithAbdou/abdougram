@@ -11,6 +11,7 @@ class Like extends Component
     public function toglle_like()
     {
         auth()->user()->likes()->toggle($this->post);
+        $this->emit('postLiked');
     }
 
     public function render()

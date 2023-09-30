@@ -75,7 +75,6 @@
 
 
     </div>
-    <livewire:counter />
 </x-app-layout>
 <style>
     #alert.hide {
