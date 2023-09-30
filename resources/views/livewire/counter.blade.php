@@ -1,3 +1,5 @@
 <div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
+    <input wire:model="message" type="text">
+
+    <h1>{{ $message }}</h1>
 </div>

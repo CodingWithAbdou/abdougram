@@ -64,7 +64,7 @@
             </div>
             @endforeach
         </div>
-
+        {{-- <livewire:counter /> --}}
     </div>
 </x-app-layout>
 

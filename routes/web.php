@@ -5,6 +5,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,5 +60,5 @@ Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->na
 Route::get('/{user:username}/follow' , [ FollowController::class , 'follow' ])->name('add_follow')->middleware('auth');
 Route::get('/{user:username}/unfollow' , [ FollowController::class , 'unfollow' ])->name('add_follow')->middleware('auth');
 
-
+// Route::get('/counter', Counter::class);
 

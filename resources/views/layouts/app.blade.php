@@ -13,7 +13,10 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        @livewireStyles
+        @vite('resources/css/app.css')
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -33,5 +36,8 @@
                 {{ $slot }}
             </main>
         </div>
+        @vite('resources/js/app.js')
+        @livewireScripts
     </body>
+
 </html>
