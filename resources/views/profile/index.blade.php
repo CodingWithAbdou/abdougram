@@ -13,6 +13,7 @@
                     {{$user->username}}
             </h2>
             <div class="flex items-center">
+                @auth
                 @if (auth()->user()->id == $user->id)
                 <a class="mx-2 nice-btn " href="/profile">
                     {{ __("Edit profile")}}
@@ -31,6 +32,12 @@
                     {{ __("Follow")}}
                 </a>
                 @endif
+                @endauth
+                @guest
+                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">
+                    {{ __("Follow")}}
+                </a>
+                @endguest
             </div>
         </div>
 
@@ -53,6 +60,8 @@
         </div>
     </div>
     <div>
+        @auth
+
         @if (count($user->posts) > 0 && ($user->id == auth()->user()->id || auth()->user()->isFollowing($user) || $user->private_account == false) )
         <div  class="flex justify-center py-8">
             <div class="w-[78%] grid  grid-cols-3  ">
@@ -65,11 +74,12 @@
         </div>
         @elseif (count($user->posts) ==  0  && $user->id == auth()->user()->id)
         <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('You Don\'t Have any Posts')}}</div>
-        @elseif (count($user->posts) ==  0)
-        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('This User Does\'t Have any Posts')}}</div>
         @elseif (auth()->user()->isPending($user))
         <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('After Owner This Page Accept Your Invite You Can See Posts')}}</div>
         @else
+        @endauth
+        @elseif (count($user->posts) ==  0)
+        <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('This User Does\'t Have any Posts')}}</div>
         <div class="text-center w-full mt-8 p-4 rounded-e-md ">{{ __('This Acoount Is Private ,  Follow This account For See All Posts')}}</div>
         @endif
 

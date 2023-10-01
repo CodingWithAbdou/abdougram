@@ -16,7 +16,7 @@
                 <div class="grow">
                     <a class="font-bold" href="/profile/{{ $post->owner->username }}" >{{ $post->owner->username }}</a>
                 </div>
-                @if ($post->owner->id === auth()->user()->id)
+                @can('update' , $post )
                 <div class="flex gap-1 items-center">
                     <a href="/p/{{$post->slug}}/edit">
                         <i class='bx bx-message-square-edit text-xl text-green-400'></i>
@@ -29,17 +29,18 @@
                         </button>
                     </form>
                 </div>
-                @elseif(auth()->user()->isFollowing($post->owner))
-                <a class="mx-2 nice-btn bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/unfollow">
-                    {{ __("UnFollow")}}
-                </a>
-                @elseif(auth()->user()->isPending($post->owner))
-                    <span class="text-white bg-gray-400 py-1 px-2 rounded-md">{{ __("Pending")}}</span>
-                @else
-                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/follow">
-                    {{ __("Follow")}}
-                </a>
-                @endif
+                @endcan
+                @cannot('update' , $post )
+                    @if(auth()->user()->isFollowing($post->owner))
+                    <a class="mx-2 nice-btn bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/unfollow">
+                        {{ __("UnFollow")}}
+                    </a>
+                    @else
+                    <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/follow">
+                        {{ __("Follow")}}
+                    </a>
+                    @endif
+                @endcannot
             </div>
 
             {{-- discription The Post And Tags  --}}

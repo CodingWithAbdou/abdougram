@@ -47,8 +47,6 @@ class PostController extends Controller
         auth()->user()->posts()->create($data);
 
         return redirect()->back();
-
-        // dd(request()->image);
     }
 
     /**
@@ -64,6 +62,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('update' , $post);
         return view('post.edit' , compact('post'));
     }
 
@@ -72,6 +71,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('update' , $post);
+
         $data = request()->validate([
             'description' => 'required',
             'image' => ['nullable' , 'mimes:jpeg,jpg,png,gif' ],
@@ -91,6 +92,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        return $user->id == $post->user_id;
+
         Storage::delete('public/' .  $post->image);
 
         $post->delete();
