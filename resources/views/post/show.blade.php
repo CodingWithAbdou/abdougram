@@ -31,15 +31,8 @@
                 </div>
                 @endcan
                 @cannot('update' , $post )
-                    @if(auth()->user()->isFollowing($post->owner))
-                    <a class="mx-2 nice-btn bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/unfollow">
-                        {{ __("UnFollow")}}
-                    </a>
-                    @else
-                    <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$post->owner->username}}/follow">
-                        {{ __("Follow")}}
-                    </a>
-                    @endif
+                    @livewire('follow', ["userId" => $post->owner->id])
+                    {{-- <livewire:follow :post="$post" :userId="$post->owner->id" /> --}}
                 @endcannot
             </div>
 

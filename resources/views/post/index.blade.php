@@ -55,11 +55,7 @@
                     </div>
                 </div>
                 <div>
-                    @if (auth()->user()->isPending($s_user))
-                    <span class="text-gray-500 text-md font-bold">Pending</span>
-                    @else
-                    <a href="/{{$s_user->username}}/follow"  class=" cursor-pointer text-md select-none text-blue-400 hover:text-blue-500 font-bold  ">{{__('Follow')}}</a>
-                    @endif
+                    @livewire('follow', ["userId" => $s_user->id])
                 </div>
             </div>
             @endforeach

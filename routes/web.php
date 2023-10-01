@@ -57,8 +57,8 @@ Route::get('/p/{post:slug}/like' , LikeController::class);
 Route::post('/p/{post:slug}/comment' , [CommentController::class , 'store'])->name('store_comment')->middleware('auth');
 
 
-Route::get('/{user:username}/follow' , [ FollowController::class , 'follow' ])->name('add_follow')->middleware('auth');
-Route::get('/{user:username}/unfollow' , [ FollowController::class , 'unfollow' ])->name('add_follow')->middleware('auth');
+Route::get('/{user:username}/follow' , [ FollowController::class , 'follow' ])->name('follow_user')->middleware('auth');
+Route::get('/{user:username}/unfollow' , [ FollowController::class , 'unfollow' ])->name('unfoolow_user')->middleware('auth');
 
 // Route::get('/counter', Counter::class);
 

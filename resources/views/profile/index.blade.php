@@ -14,24 +14,7 @@
             </h2>
             <div class="flex items-center">
                 @auth
-                @if (auth()->user()->id == $user->id)
-                <a class="mx-2 nice-btn " href="/profile">
-                    {{ __("Edit profile")}}
-                </a>
-                <a href="/profile">
-                    {!! auth()->user()->id == $user->id ? "<i class='bx bx-cog text-xl'></i>" : "" !!}
-                </a>
-                @elseif(auth()->user()->isFollowing($user))
-                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/unfollow">
-                    {{ __("UnFollow")}}
-                </a>
-                @elseif(auth()->user()->isPending($user))
-                    <span class="text-white bg-gray-400 py-1 px-2 rounded-md">{{ __("Pending")}}</span>
-                @else
-                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">
-                    {{ __("Follow")}}
-                </a>
-                @endif
+                @livewire('follow', ["userId" => $user->id])
                 @endauth
                 @guest
                 <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">
