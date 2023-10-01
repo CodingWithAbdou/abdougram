@@ -14,7 +14,7 @@
             </h2>
             <div class="flex items-center">
                 @auth
-                @livewire('follow', ["userId" => $user->id])
+                @livewire('follow', ["userId" => $user->id , "classes" => ' mx-2 nice-btn  bg-blue-400 hover:bg-blue-500'])
                 @endauth
                 @guest
                 <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">

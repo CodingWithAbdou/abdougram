@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div>
-                    @livewire('follow', ["userId" => $s_user->id])
+                    @livewire('follow', ["userId" => $s_user->id , "classes" => 'text-blue-400 font-bold'])
                 </div>
             </div>
             @endforeach

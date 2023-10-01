@@ -10,6 +10,7 @@ class Follow extends Component
     public $userId;
     protected $user;
     public $follow_state;
+    public $classes;
 
 
     public function toggle_follow()
