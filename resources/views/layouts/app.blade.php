@@ -38,6 +38,8 @@
         </div>
         @vite('resources/js/app.js')
         @livewireScripts
+        @livewire('livewire-ui-modal')
+        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
     </body>
 
 </html>

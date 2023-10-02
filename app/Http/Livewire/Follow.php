@@ -11,6 +11,7 @@ class Follow extends Component
     protected $user;
     public $follow_state;
     public $classes;
+    public $pendingClass;
 
 
     public function toggle_follow()

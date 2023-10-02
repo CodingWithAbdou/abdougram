@@ -14,10 +14,22 @@
             </h2>
             <div class="flex items-center">
                 @auth
-                @livewire('follow', ["userId" => $user->id , "classes" => ' mx-2 nice-btn  bg-blue-400 hover:bg-blue-500'])
+                @if ($user->id === auth()->id())
+                    <div class="flex items-center gap-4">
+                        <a  class="nice-btn" href="{{ route('profile.edit') }}">
+                            {{ __('Edit Profile') }}
+                        </a>
+                        <a href="{{ route('profile.edit') }}"
+                            >
+                            <i class='bx bxs-cog text-2xl' ></i>
+                        </a>
+                    </div>
+                @else
+                @livewire('follow', ["userId" => $user->id , "classes" => ' mx-2 nice-btn  bg-blue-400 hover:bg-blue-500' , 'pendingClass' => "text-white bg-gray-400 px-3 py-2 rounded-md font-bold"])
+                @endif
                 @endauth
                 @guest
-                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500" href="/{{$user->username}}/follow">
+                <a class="mx-2 nice-btn  bg-blue-400 hover:bg-blue-500 " href="/{{$user->username}}/follow">
                     {{ __("Follow")}}
                 </a>
                 @endguest
@@ -38,7 +50,11 @@
             <ul class="flex justify-center md:justify-start md:border-none border-y py-4 gap-6" >
                 <li class="text-lg">{{ count($user->posts)  }}{{ count($user->posts) > 0 ? ' Posts' : 'post' }}</li>
                 <li class="text-lg"> {{$user->followers()->count()}} {{ __('Follwers')}}</li>
-                <li class="text-lg"> {{count($user->following)}} {{ __('Following') }}</li>
+                <li class="text-lg">
+                    <button  onclick='Livewire.emit("openModal",  "follow-model" , {{ json_encode(["userId" => $user->id]) }} )' >
+                        {{count($user->following)}} {{ __('Following') }}
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
