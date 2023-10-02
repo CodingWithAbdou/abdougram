@@ -31,7 +31,7 @@
                 </div>
                 @endcan
                 @cannot('update' , $post )
-                    @livewire('follow', ["userId" => $post->owner->id , "classes" => 'text-blue-400 font-bold'])
+                    @livewire('follow-button', ["userId" => $post->owner->id , "classes" => 'text-blue-400 font-bold'])
                     {{-- <livewire:follow :post="$post" :userId="$post->owner->id" /> --}}
                 @endcannot
             </div>
