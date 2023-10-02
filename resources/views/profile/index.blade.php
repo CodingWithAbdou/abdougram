@@ -52,7 +52,7 @@
                 <li class="text-lg"> {{$user->followers()->count()}} {{ __('Follwers')}}</li>
                 <li class="text-lg">
                     <button  onclick='Livewire.emit("openModal",  "follow-model" , {{ json_encode(["userId" => $user->id]) }} )' >
-                        {{count($user->following)}} {{ __('Following') }}
+                        <livewire:count-following :userId="$user->id" />
                     </button>
                 </li>
             </ul>
