@@ -27,9 +27,9 @@
                     </div>
 
                     <div>
-                        <a href="{{route('create_post')}}">
-                            {!! url()->current() == route('create_post') ?  "<i class='bx bxs-message-square-add  text-xl' ></i>" :  "<i class='bx bx-message-square-add  text-xl'></i>" !!}
-                        </a>
+                        <button onclick="Livewire.emit('openModal', 'create-post-model')">
+                            <i class='bx bx-add-to-queue text-xl'></i>
+                        </button>
                     </div>
 
                     <div class="mx-2">
