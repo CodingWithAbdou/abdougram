@@ -7,16 +7,13 @@ use Livewire\Component;
 
 class PendingListCount extends Component
 {
-    public $userId;
-    protected $user;
-
-    protected $listeners = ['deleted_followerr' => 'getCountProperty' , ' confirmed_followe' => 'getCountProperty' ];
+    protected $listeners = ['notification_clicked' => 'getCountProperty' , 'deleted_follower' => 'getCountProperty' , 'confirmed_follower' => 'getCountProperty' ];
 
     public function getCountProperty()
     {
-        $this->user = User::find($this->userId);
-        return $this->user->followers()->wherePivot('confirmed' , false)->count();
+        return count(auth()->user()->followers()->wherePivot('confirmed' , false)->get());
     }
+
     public function render()
     {
         return view('livewire.pending-list-count');

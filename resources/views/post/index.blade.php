@@ -3,15 +3,7 @@
 
         {{-- left section --}}
         <div class="w-8/12  ">
-            <div class="max-w-[65%] mx-auto">
-                @forelse ($posts as $post)
-                    <x-post :post="$post"></x-post>
-                @empty
-                    <div class="bg-yellow-400 p-2 border border-yellow-400 px-4 rounded-md text-white ">
-                        {{ __('Start Follwing You Friends and Enjoy') }}
-                    </div>
-                @endforelse
-            </div>
+            <livewire:post-list />
         </div>
 
         {{-- Right section --}}

@@ -17,11 +17,7 @@ class CountFollowing extends Component
         $this->user = User::find($this->userId);
         return count($this->user->following()->wherePivot('confirmed' , true)->get());
     }
-    // public function getCount()
-    // {
-    //     $this->user = User::find($this->userId);
-    //     return count($this->user->following()->wherePivot('confirmed' , true)->get());
-    // }
+
     public function render()
     {
         return view('livewire.count-following');

@@ -10,12 +10,11 @@ class PendingList extends Component
     public $userId;
     protected $user;
 
-    // protected $listeners = ['notification_clicked' => '$refresh' , 'deleted_followerr' => '$refresh' , ' confirmed_followe' => '$refresh' ];
+    protected $listeners = ['notification_clicked' => 'getPendingListProperty' , 'deleted_followerr' => 'getPendingListProperty' , 'confirmed_follower' => 'getPendingListProperty' ];
 
     public function getPendingListProperty()
     {
-        $this->user = User::find($this->userId);
-        return $this->user->followers()->wherePivot('confirmed' , false)->get();;
+        return auth()->user()->followers()->wherePivot('confirmed' , false)->get();;
     }
 
     public function confirme($userId)
@@ -24,7 +23,6 @@ class PendingList extends Component
         $this->user = User::find($this->userId);
         $this->user->confirmedPending($pending_followers);
         $this->emit('confirmed_follower');
-
     }
 
     public function deleteRequestPending($userId)
@@ -32,7 +30,7 @@ class PendingList extends Component
         $pending_followers = User::find($userId);
         $this->user = User::find($this->userId);
         $this->user->deleteRequestPending($pending_followers);
-        $this->emit('deleted_follower ');
+        $this->emit('deleted_follower');
     }
 
     public function render()
