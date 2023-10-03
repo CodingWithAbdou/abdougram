@@ -7,6 +7,7 @@ use LivewireUI\Modal\ModalComponent;
 class FiltersModel extends ModalComponent
 {
     public $image;
+    public $filters = ['one' , 'two' , 'three' , 'four' , 'five'];
 
     public function mount($image)
     {

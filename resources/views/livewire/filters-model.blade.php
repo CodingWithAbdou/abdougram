@@ -1,7 +1,7 @@
 <div class="h-[50rem] lg:flex lg:flex-row overflow-y-auto">
     {{-- Left Side --}}
     <div class="flex h-1/2 lg:h-full items-center justify-center overflow-hidden bg-black lg:w-8/12">
-        {{-- <img class="h-full w-auto object-cover" src="{{ $filtered_image }}"> --}}
+        <img class="h-full w-auto object-cover" src="/storage/posts/1lxxtCbRiCyYCgDGshjza0BN7uHNcHJGoNvud8bI.png">
     </div>
 
     {{-- Right Side --}}
@@ -10,7 +10,7 @@
         <div class="grid grid-cols-3 gap-4 items-start">
             @foreach ($filters as $filter)
                 <div class="flex flex-col">
-                    <img src="images/filters/{{ $filter }}.jpg" alt="{{ $filter }}"
+                    <img src="/images/filters/{{ $filter }}.PNG" alt="{{ $filter }}"
                         class="mb-3 cursor-pointer hover:ring-1 hover:ring-gray-500" wire:click="filter_{{ strtolower($filter) }}">
                     <span class="text-center text-gray-500">{{ $filter }}</span>
                 </div>

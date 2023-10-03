@@ -12,13 +12,18 @@ class CreatePostModel extends ModalComponent
 
 
     public $image;
-    public $filters = ['one' , 'two' , 'three' , 'four' , 'five'];
 
     public function save_temp()
     {
         $this->image->store('temp');
         $this->emit("openModal", "filters-model", ['image' => $this->image]);
     }
+
+    public static function modalMaxWidth(): string
+    {
+        return '5xl';
+    }
+
 
     public function render()
     {
