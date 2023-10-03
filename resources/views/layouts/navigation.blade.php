@@ -32,6 +32,21 @@
                         </a>
                     </div>
 
+                    <div class="mx-2">
+                        <x-dropdown align="right" width="96">
+                            <x-slot name="trigger">
+                                <button wire:click="$emit('notification_clicked')">
+                                    <i class='bx bx-bell text-xl'></i>
+                                </button>
+                                @livewire('pending-list-count', ["userId" => auth()->user()->id ])
+                            </x-slot>
+
+                            <x-slot name="content">
+                                @livewire('pending-list', ["userId" => auth()->user()->id ])
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
+
                 </div>
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">

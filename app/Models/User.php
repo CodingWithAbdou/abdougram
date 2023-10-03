@@ -114,4 +114,14 @@ class User extends Authenticatable
     {
         return $this->following()->where('following_user_id' , $user->id)->where('confirmed' , true)->exists();
     }
+
+    public function confirmedPending($user)
+    {
+        return $this->followers()->where('user_id' , $user->id )->updateExistingPivot($user , ['confirmed' => true]);
+    }
+
+    public function deleteRequestPending($user)
+    {
+        return $this->followers()->where('user_id' , $user->id )->detach($user);
+    }
 }
