@@ -3,9 +3,13 @@
         @forelse ($this->PendingList as $one_pending)
         <li class="px-2 py-3 w-full flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <img class="rounded-full object-cover w-10 h-10 border" src="{{$one_pending->image}}" alt="{{$one_pending->username}}">
+                <a href="/profile/{{$one_pending->username}}">
+                    <img class="rounded-full object-cover w-10 h-10 border" src="{{$one_pending->image}}" alt="{{$one_pending->username}}">
+                </a>
                 <div >
-                    <span class="font-bold text-sm block">{{$one_pending->username}}</span>
+                    <a href="/profile/{{$one_pending->username}}">
+                        <span class="font-bold text-sm block">{{$one_pending->username}}</span>
+                    </a>
                     <span class="text-neutral-400 text-sm block">{{$one_pending->name}}</span>
                 </div>
             </div>

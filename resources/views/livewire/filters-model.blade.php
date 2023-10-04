@@ -1,4 +1,4 @@
-<div class="h-[50rem] lg:flex lg:flex-row overflow-y-auto">
+<div class="h-[90vh] lg:flex lg:flex-row overflow-y-auto">
     {{-- Left Side --}}
     <div class="flex h-1/2 lg:h-full items-center justify-center overflow-hidden bg-black lg:w-8/12">
         <img class="h-full w-auto object-cover" src="/storage/posts/1lxxtCbRiCyYCgDGshjza0BN7uHNcHJGoNvud8bI.png">
@@ -22,7 +22,7 @@
             </div>
             <div class="flex flex-col grow">
                 <div class="font-bold">
-                    <a href="/{{ auth()->user()->username }}">{{ auth()->user()->username }}</a>
+                    <a href="/profile/{{ auth()->user()->username }}">{{ auth()->user()->username }}</a>
                 </div>
             </div>
         </div>

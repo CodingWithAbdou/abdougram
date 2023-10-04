@@ -21,7 +21,7 @@ class CreatePostModel extends ModalComponent
 
     public static function modalMaxWidth(): string
     {
-        return '5xl';
+        return '4xl';
     }
 
 

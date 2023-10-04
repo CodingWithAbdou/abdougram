@@ -9,6 +9,10 @@ class FiltersModel extends ModalComponent
     public $image;
     public $filters = ['one' , 'two' , 'three' , 'four' , 'five'];
 
+    public static function modalMaxWidth(): string
+    {
+        return '5xl';
+    }
     public function mount($image)
     {
         $this->image = $image;
