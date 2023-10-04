@@ -1,7 +1,8 @@
 <div class="h-[90vh] lg:flex lg:flex-row overflow-y-auto">
     {{-- Left Side --}}
-    <div class="flex h-1/2 lg:h-full items-center justify-center overflow-hidden bg-black lg:w-8/12">
-        <img class="h-full w-auto object-cover" src="/storage/posts/1lxxtCbRiCyYCgDGshjza0BN7uHNcHJGoNvud8bI.png">
+    <div class="py-10 flex h-1/2 lg:h-full items-center justify-center overflow-hidden bg-black lg:w-8/12">
+        <img class="h-full w-auto object-cover" src="storage/{{$filtred_image}}">
+        {{-- <span>{{json_encode($filtred_image)}}</span> --}}
     </div>
 
     {{-- Right Side --}}
@@ -12,7 +13,7 @@
                 <div class="flex flex-col">
                     <img src="/images/filters/{{ $filter }}.PNG" alt="{{ $filter }}"
                         class="mb-3 cursor-pointer hover:ring-1 hover:ring-gray-500" wire:click="filter_{{ strtolower($filter) }}">
-                    <span class="text-center text-gray-500">{{ $filter }}</span>
+                    <span class="text-center text-gray-500">{{ ucfirst($filter)  }}</span>
                 </div>
             @endforeach
         </div>
